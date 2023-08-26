@@ -186,7 +186,7 @@ function main {
 INSTALLER_MESSAGE
 
     if [[ -z "${PDS_HOSTNAME}" ]]; then
-      read -p "Enter your public DNS address (e.g. example.com): " PDS_HOSTNAME
+      read -pr "Enter your public DNS address (e.g. example.com): " PDS_HOSTNAME
     fi
   fi
 
@@ -200,14 +200,14 @@ INSTALLER_MESSAGE
 
   # Admin email
   if [[ -z "${PDS_ADMIN_EMAIL}" ]]; then
-    read -p "Enter an admin email address (e.g. you@example.com): " PDS_ADMIN_EMAIL
+    read -pr "Enter an admin email address (e.g. you@example.com): " PDS_ADMIN_EMAIL
   fi
   if [[ -z "${PDS_ADMIN_EMAIL}" ]]; then
     usage "No admin email specified"
   fi
 
   if [[ -z "${PDS_ADMIN_EMAIL}" ]]; then
-    read -p "Enter an admin email address (e.g. you@example.com): " PDS_ADMIN_EMAIL
+    read -pr "Enter an admin email address (e.g. you@example.com): " PDS_ADMIN_EMAIL
   fi
   if [[ -z "${PDS_ADMIN_EMAIL}" ]]; then
     usage "No admin email specified"
@@ -229,7 +229,7 @@ INSTALLER_MESSAGE
   fi
   
   apt-get update
-  apt-get install --yes ${REQUIRED_SYSTEM_PACKAGES}
+  apt-get install --yes "${REQUIRED_SYSTEM_PACKAGES}"
 
   #
   # Install Docker
@@ -247,7 +247,7 @@ INSTALLER_MESSAGE
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${DISTRIB_ID} ${DISTRIB_CODENAME} stable" >/etc/apt/sources.list.d/docker.list
 
     apt-get update
-    apt-get install --yes ${REQUIRED_DOCKER_PACKAGES}
+    apt-get install --yes "${REQUIRED_DOCKER_PACKAGES}"
   fi
 
   #
